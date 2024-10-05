@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-dictionary = pd.read_csv('/Users/derekebowman/Coding Projects/Bowman_Streamlit/dictionary.csv')
+dictionary = pd.read_csv('./dictionary.csv')
 
 # Define a color map
 colors = {'M': 'blue', 'F': 'pink'}  # Customize colors as needed
