@@ -325,7 +325,7 @@ if login():
 
         # Sidebar selections for cell types and time_diet_sex groups
         selected_celltype = st.sidebar.selectbox('Select Cell Type:', options=celltypes)
-        selected_time_diet_sex = st.sidebar.selectbox('Select Time/Diet/Sex Group:', options=time_diet_sex_groups)
+        
 
         # Select genes
         st.sidebar.header('Select Gene and Statistic')
