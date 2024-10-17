@@ -7,7 +7,7 @@ load_dotenv()
 def login():
     # Use AUTH_KEY from environment variables
     auth_key = os.getenv('AUTH_KEY')
-    usernames = {"Derek": auth_key, 'CMSE830': "GoGreen1"}
+    usernames = {"Derek": auth_key, 'CMSE830': auth_key}
 
     # Login form
     st.title("Login")
