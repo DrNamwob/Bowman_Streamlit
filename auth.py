@@ -20,3 +20,4 @@ def login():
         else:
             st.error("Invalid credentials")
             return False
+    return st.session_state.logged_in
