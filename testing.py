@@ -330,8 +330,7 @@ if login():
         # Select genes
         st.sidebar.header('Select Gene and Statistic')
         selected_gene = st.sidebar.selectbox('Select Gene:', options=gene_names, index=gene_names.tolist().index('Cebpb'))
-
-        #selected_gene = st.sidebar.selectbox('Select Gene:', options=gene_names, default=gene_names=='Cebpb')
+        
 
         # Select descriptive statistic (assuming the second level of columns are the statistics)
         statistics = df[selected_gene].columns.tolist()
