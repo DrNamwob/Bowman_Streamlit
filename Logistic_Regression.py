@@ -41,4 +41,8 @@ if login():
 
 
     st.pyplot(fig)
+    
+    
+
+
 
