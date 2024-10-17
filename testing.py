@@ -6,6 +6,8 @@ import time
 from auth import login
 
 if login():
+    
+    st.header('Cell Counts Figure')
     counts_df = pd.read_csv('grouped_cell_counts.csv')
     counts_data = counts_df[['celltype_broad', 'sex', 'time', 'diet', 'count']]
 
@@ -32,7 +34,7 @@ if login():
                                 & (counts_data['time'].isin(selected_time))
                                 & (counts_data['diet'].isin(selected_diet)))]
 
-
+    
 
     # Plotly Bar Chart
     fig = px.bar(
@@ -50,9 +52,8 @@ if login():
 
     # Weight, Systolic BP, or Mean Arterial Pressure:
 
-    import streamlit as st
-    import pandas as pd
-    import plotly.express as px
+    st.header('Physiologic Measurements Figure')
+    st.write('Choose between mean and median')
 
     # Streamlit selectbox for choosing Mean or Median
     statistic = st.selectbox("Select Statistic", ["Mean", "Median"])
@@ -312,6 +313,8 @@ if login():
             df = load_data()
             print('completed loading')
 
+        
+        st.header('Visualize descriptive Statistics for Genes of Interest')
         # Sidebar for user selections
         st.sidebar.header('User Selections')
 
@@ -326,7 +329,9 @@ if login():
 
         # Select genes
         st.sidebar.header('Select Gene and Statistic')
-        selected_gene = st.sidebar.selectbox('Select Gene:', options=gene_names)
+        selected_gene = st.sidebar.selectbox('Select Gene:', options=gene_names, index=gene_names.tolist().index('Cebpb'))
+
+        #selected_gene = st.sidebar.selectbox('Select Gene:', options=gene_names, default=gene_names=='Cebpb')
 
         # Select descriptive statistic (assuming the second level of columns are the statistics)
         statistics = df[selected_gene].columns.tolist()
