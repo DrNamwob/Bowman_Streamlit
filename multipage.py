@@ -6,6 +6,10 @@ import plotly.express as px
 import time 
 from auth import login
 
+
+st.set_page_config(page_title="My Multipage App", layout="wide")
+
+
 if login():
     # Define the pages using classes
     class HomePage:
