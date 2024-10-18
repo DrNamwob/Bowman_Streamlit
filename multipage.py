@@ -303,7 +303,7 @@ if login():
                 return df
 
             # Sidebar checkbox for loading gene data
-            load_gene_data = st.sidebar.checkbox("Do you want to load Gene data? This may take a while.")
+            load_gene_data = st.sidebar.checkbox("Do you want to load Gene data? This may take a while. ~1 - 2 minutes")
 
             if load_gene_data:
                 # Display a spinner while loading the CSV
