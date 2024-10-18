@@ -50,7 +50,7 @@ class CellCountsPage:
         
 class SecondFigurePage:
     def layout(self):
-        st.header('Second Figure')
+        st.header('Physiological Data Figure')
         
         st.header('Physiologic Measurements Figure')
         st.write('Choose between mean and median')
@@ -289,7 +289,7 @@ class SecondFigurePage:
         
 class ThirdFigurePage:
     def layout(self):
-        st.header('Third Figure')
+        st.header('Gene Expression Plot')
         
             # Cache the data loading function
         @st.cache_data

@@ -15,12 +15,12 @@ This Streamlit application visualizes single cell RNA sequencing data from the p
     - **Diet**: Pick diet conditions to filter the data.
 2. **View the Plot**: The bar chart will dynamically update based on your selections, showing the cell counts grouped by the selected criteria.
 
-### Bar Chart
+    ### Bar Chart
 
-The bar chart presents:
-- **X-Axis**: Different cell types.
-- **Y-Axis**: The count of cells.
-- **Color**: Groups the data by a combination of sex, time, and diet for clear comparison.
+    The bar chart presents:
+    - **X-Axis**: Different cell types.
+    - **Y-Axis**: The count of cells.
+    - **Color**: Groups the data by a combination of sex, time, and diet for clear comparison.
 
 ## Physiological Data Plot
 
@@ -29,12 +29,12 @@ The bar chart presents:
 3. **Load Data**: Depending on the selected variable, relevant data will be loaded.
 4. **Select Columns**: For `Mean Arterial Pressure`, select specific columns to plot.
 
-### Bar Chart
+    ### Bar Chart
 
-The bar chart for physiological data presents:
-- **X-Axis**: Selected columns (e.g., different time points).
-- **Y-Axis**: Mean or median values of the selected variable.
-- **Color**: Groups the data by a combination of sex and diet for clear comparison.
+    The bar chart for physiological data presents:
+    - **X-Axis**: Selected columns (e.g., different time points).
+    - **Y-Axis**: Mean or median values of the selected variable.
+    - **Color**: Groups the data by a combination of sex and diet for clear comparison.
 
 ## Gene Expression Plot
 
@@ -48,12 +48,12 @@ The bar chart for physiological data presents:
             df = load_data()
     ```
 
-### Bar Chart
+    ### Bar Chart
 
-The bar chart for gene expression presents:
-- **X-Axis**: Different time/diet/sex groups.
-- **Y-Axis**: Expression level of the selected gene.
-- **Color**: Groups the data by time/diet/sex for detailed comparison.
+    The bar chart for gene expression presents:
+    - **X-Axis**: Different time/diet/sex groups.
+    - **Y-Axis**: Expression level of the selected gene.
+    - **Color**: Groups the data by time/diet/sex for detailed comparison.
 
 ## Data Loading
 
