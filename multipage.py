@@ -7,7 +7,6 @@ import time
 from auth import login
 
 
-if login():
     # Define the pages using classes
     class HomePage:
         def layout(self):
@@ -16,11 +15,7 @@ if login():
 
     class CellCountsPage:
         def layout(self):
-            import pandas as pd
-            import plotly.express as px
-
             st.header('Cell Counts Figure')
-
             counts_df = pd.read_csv('grouped_cell_counts.csv')
             counts_data = counts_df[['celltype_broad', 'sex', 'time', 'diet', 'count']]
             counts_data['group'] = counts_data['sex'] + ' ' + counts_data['time'] + ' ' + counts_data['diet']
@@ -46,7 +41,6 @@ if login():
             
             
     class SecondFigurePage:
-        
         def layout(self):
             st.header('Second Figure')
             
@@ -58,10 +52,6 @@ if login():
 
             # Streamlit selectbox for choosing the variable to plot
             variable = st.selectbox("Select Variable", ["Weight", "Systolic Blood Pressure", "Mean Arterial Pressure"])
-
-
-
-            # Check if the statistic is 'Mean' and the variable is 'mean arterial pressure'
 
             # Check if the statistic is 'Mean' and the variable is 'mean arterial pressure'
             if statistic == "Mean":
