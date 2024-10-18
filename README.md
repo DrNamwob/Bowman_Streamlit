@@ -3,7 +3,7 @@ This Streamlit application visualizes single cell RNA sequencing data from the p
 
 The scRNAseq data was processed in the following manner:
 
-# Sample code
+# Processing code:
 
 ```python
 sc.pp.filter_genes(adata, min_counts=10) # Removed any genes with less than 10 counts
