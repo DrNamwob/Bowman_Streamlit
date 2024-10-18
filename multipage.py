@@ -371,8 +371,6 @@ if login():
         "Third Figure": ThirdFigurePage
     }
 
-    # Set the page title and layout
-    st.set_page_config(page_title="My Multipage App", layout="wide")
 
     # Display navigation
     st.sidebar.title("Navigation")
