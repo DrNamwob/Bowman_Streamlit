@@ -6,21 +6,21 @@ import plotly.express as px
 import time 
 from auth import login
 
-
-# Define the pages using classes
-class HomePage:
-    def layout(self):
-        st.title("Welcome to My Multipage App")
-        st.write("This is the home page.")
-
-        # Read the contents of README.md
-        with open('README.md', 'r') as file:
-            readme_contents = file.read()
-
-        # Display the contents of README.md
-        st.markdown(readme_contents)
-
 if login():
+    # Define the pages using classes
+    class HomePage:
+        def layout(self):
+            st.title("Welcome to My Multipage App")
+            st.write("This is the home page.")
+
+            # Read the contents of README.md
+            with open('README.md', 'r') as file:
+                readme_contents = file.read()
+
+            # Display the contents of README.md
+            st.markdown(readme_contents)
+
+
     class CellCountsPage:
         def layout(self):
             st.header('Cell Counts Figure')
