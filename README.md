@@ -14,6 +14,7 @@ sc.pp.normalize_total(adata) # Normalize each cell by the median number of count
 ```
 
 
+There is no missing data per say, because gene counts of 0 are meaningful. Some cells (even of the same type) will have certain genes expressed, while other cells won't. 
 
 ## Cell Counts Plot
 
