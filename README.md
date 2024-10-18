@@ -15,10 +15,6 @@ sc.pp.normalize_total(adata) # Normalize each cell by the median number of count
 
 
 
-## Login
-
-1. **Login**: Start by logging in with your credentials.
-
 ## Cell Counts Plot
 
 1. **Select Criteria**:
