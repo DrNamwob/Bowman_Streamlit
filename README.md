@@ -1,6 +1,19 @@
-# Cell Counts Visualization
 
 This Streamlit application visualizes single cell RNA sequencing data from the perivascular adipose tissue of male and female rats that were fed either a control or high-fat diet for 8 or 24 weeks. Rats fed a high-fat diet for 24 weeks develop hypertension. Included in these visualizations are weight and blood pressure measurements, cell count data, and descriptive statistics for every gene in various cell types grouped by the treatment group these samples were from.
+
+The scRNAseq data was processed in the following manner:
+
+# Sample code
+
+```python
+sc.pp.filter_genes(adata, min_counts=10) # Removed any genes with less than 10 counts
+sc.pp.filter_genes(adata, min_cells=20) # Removed any genes that did not appear in at least 20 cells
+sc.pp.filter_cells(adata, min_genes=50) # Removed cells that did not have at least 50 genes
+sc.pp.filter_cells(adata, min_counts=100) # Removed cells that did not have at least 100 counts
+sc.pp.normalize_total(adata) # Normalize each cell by the median number of counts from the entire dataset. Each cell will have the same number of total counts (equal to the median).
+```
+
+
 
 ## Login
 

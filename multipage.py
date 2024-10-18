@@ -14,8 +14,8 @@ if login():
     # Define the pages using classes
     class HomePage:
         def layout(self):
-            st.title("Welcome to My Multipage App")
-            st.write("This is the home page.")
+            st.title("Welcome to My App")
+            
 
             # Read the contents of README.md
             with open('README.md', 'r') as file:
