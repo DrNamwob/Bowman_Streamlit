@@ -13,6 +13,14 @@ class HomePage:
         st.title("Welcome to My Multipage App")
         st.write("This is the home page.")
 
+        # Read the contents of README.md
+        with open('README.md', 'r') as file:
+            readme_contents = file.read()
+
+        # Display the contents of README.md
+        st.markdown(readme_contents)
+
+
 class CellCountsPage:
     def layout(self):
         st.header('Cell Counts Figure')
