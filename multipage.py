@@ -565,7 +565,7 @@ if login():
             def load_data():
                 # Use pandas to read the CSV file
                 df = pd.read_csv(
-                    "/focal_adhesion_pi3k_genes_only_unscaled.csv"
+                    "focal_adhesion_pi3k_genes_only_unscaled.csv"
                 )
                 return df
 
