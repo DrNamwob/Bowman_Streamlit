@@ -51,7 +51,8 @@ if login():
             st.plotly_chart(fig)
             
             
-            
+
+
     class SecondFigurePage:
         def layout(self):
             st.header('Physiological Data Figure')
@@ -63,22 +64,38 @@ if login():
             statistic = st.selectbox("Select Statistic", ["Mean", "Median"])
 
             # Streamlit selectbox for choosing the variable to plot
-            variable = st.selectbox("Select Variable", ["Weight", "Systolic Blood Pressure", "Mean Arterial Pressure"])
-
-            # Check if the statistic is 'Mean' and the variable is 'mean arterial pressure'
+            variable = st.selectbox("Select Variable", ["Pulse Wave Velocity", "Weight", "Systolic Blood Pressure", "Mean Arterial Pressure"])
+            width = 2000
+            height = 1000
+            # Check if the statistic is 'Mean' and the variable is 'Pulse Wave Velocity'
             if statistic == "Mean":
-                if variable == "Mean Arterial Pressure":
+            
+                if variable == "Pulse Wave Velocity":
+                    # Assuming df_combined is already defined and contains the necessary data
+                    df_combined = pd.read_csv('pwv_combined.csv')
+
+                    # Create a bar plot using Plotly Express
+                    fig = px.line(df_combined, x='Time_on_Diet', y='mean', color='group', 
+                                title=f'{statistic} of Pulse Wave Velocity over Time', 
+                                labels={'mean': 'Pulse Wave Velocity', 'Time_on_Diet': 'Time on Diet (weeks)', 'group': 'Group'},
+                                width=width, height=height)
+
+                    # Display the plot in Streamlit
+                    st.plotly_chart(fig)
+
+                elif variable == "Mean Arterial Pressure":
                     # Load the data
                     df = pd.read_csv('map_df_mean.csv')
                     
                     # Create a new column that combines 'sex' and 'diet' for the X-axis
                     df['group'] = df['sex'] + ' ' + df['diet']
 
-                    # Let users select columns to plot (systolic_bp columns)
+                    # Let users select columns to plot (MAP columns)
                     selected_columns = st.multiselect(
                         'Select columns to plot:', 
-                        options=[col for col in df.columns if 'MAP' in col],  # Only systolic_bp columns
-                        default=[col for col in df.columns if 'MAP' in col]  # Default to all systolic_bp columns
+                        options=[col for col in df.columns if 'MAP' in col],  # Only MAP columns
+                        default=[col for col in df.columns if 'MAP' in col],  # Default to all MAP columns
+                        key='map_columns'  # Unique key for this multiselect
                     )
 
                     # Filter the DataFrame based on selected columns
@@ -93,19 +110,18 @@ if login():
                     # Plotly Bar Chart
                     fig = px.bar(
                         df_melted,
-                        x='Time',  # The X-axis will show the selected systolic_bp columns
+                        x='Time',  # The X-axis will show the selected MAP columns
                         y='Mean Arterial Pressure',
                         color='group',  # Color by 'group' (sex + diet)
                         barmode='group',  # Group the bars for comparison
                         labels={'group': 'Group (Sex - Diet)', 'Mean Arterial Pressure': 'Mean Arterial Pressure \n (mmHg)'},
-                        title=f'{statistic} of {variable.title()} by Group and Week'
+                        title=f'{statistic} of {variable.title()} by Group and Week', width=width, height=height
                     )
 
                     # Display the plot
                     st.plotly_chart(fig)
-                    
+                
                 elif variable == 'Systolic Blood Pressure':
-
                     df = pd.read_csv('sbp_df_mean.csv')
                     
                     # Create a new column that combines 'sex' and 'diet' for the X-axis
@@ -115,7 +131,8 @@ if login():
                     selected_columns = st.multiselect(
                         'Select columns to plot:', 
                         options=[col for col in df.columns if 'systolic_bp' in col],  # Only systolic_bp columns
-                        default=[col for col in df.columns if 'systolic_bp' in col]  # Default to all systolic_bp columns
+                        default=[col for col in df.columns if 'systolic_bp' in col],  # Default to all systolic_bp columns
+                        key='sbp_columns'  # Unique key for this multiselect
                     )
 
                     # Filter the DataFrame based on selected columns
@@ -135,24 +152,24 @@ if login():
                         color='group',  # Color by 'group' (sex + diet)
                         barmode='group',  # Group the bars for comparison
                         labels={'group': 'Group (Sex - Diet)', 'Systolic Blood Pressure': 'Systolic Blood Pressure \n (mmHg)'},
-                        title=f'{statistic} of {variable.title()} by Group and Week'
+                        title=f'{statistic} of {variable.title()} by Group and Week', width=width, height=height
                     )
 
                     # Display the plot
                     st.plotly_chart(fig)
 
-                else: #variable == 'Weight':
-                
+                else:  # variable == 'Weight'
                     df = pd.read_csv('weights_df_mean.csv')
                     
                     # Create a new column that combines 'sex' and 'diet' for the X-axis
                     df['group'] = df['sex'] + ' ' + df['diet']
 
-                    # Let users select columns to plot (systolic_bp columns)
+                    # Let users select columns to plot (weight columns)
                     selected_columns = st.multiselect(
                         'Select columns to plot:', 
-                        options=[col for col in df.columns if 'weight' in col],  # Only systolic_bp columns
-                        default=[col for col in df.columns if 'weight' in col]  # Default to all systolic_bp columns
+                        options=[col for col in df.columns if 'weight' in col],  # Only weight columns
+                        default=[col for col in df.columns if 'weight' in col],  # Default to all weight columns
+                        key='weight_columns'  # Unique key for this multiselect
                     )
 
                     # Filter the DataFrame based on selected columns
@@ -167,30 +184,46 @@ if login():
                     # Plotly Bar Chart
                     fig = px.bar(
                         df_melted,
-                        x='Time',  # The X-axis will show the selected systolic_bp columns
+                        x='Time',  # The X-axis will show the selected weight columns
                         y='Weight',
                         color='group',  # Color by 'group' (sex + diet)
                         barmode='group',  # Group the bars for comparison
                         labels={'group': 'Group (Sex - Diet)', 'Weight': 'Weight (g)'},
-                        title=f'{statistic} of {variable.title()} by Group and Week'
+                        title=f'{statistic} of {variable.title()} by Group and Week', width=width, height=height
                     )
 
                     # Display the plot
                     st.plotly_chart(fig)
 
             if statistic == "Median":
-                if variable == "Mean Arterial Pressure":
+                
+                if variable == "Pulse Wave Velocity":
+                    # Assuming df_combined is already defined and contains the necessary data
+                    df_combined = pd.read_csv('pwv_combined.csv')
+
+                    # Create a bar plot using Plotly Express
+                    fig = px.line(df_combined, x='Time_on_Diet', y='50%', color='group', 
+                                title=f'{statistic} of Pulse Wave Velocity over Time', 
+                                labels={'50%': 'Pulse Wave Velocity', 'Time_on_Diet': 'Time on Diet (weeks)', 'group': 'Group'},
+                                width=width, height=height)
+
+                    # Display the plot in Streamlit
+                    st.plotly_chart(fig)
+                
+                
+                elif variable == "Mean Arterial Pressure":
                     # Load the data
                     df = pd.read_csv('map_df_median.csv')
                     
                     # Create a new column that combines 'sex' and 'diet' for the X-axis
                     df['group'] = df['sex'] + ' ' + df['diet']
 
-                    # Let users select columns to plot (systolic_bp columns)
+                    # Let users select columns to plot (MAP columns)
                     selected_columns = st.multiselect(
                         'Select columns to plot:', 
-                        options=[col for col in df.columns if 'MAP' in col],  # Only systolic_bp columns
-                        default=[col for col in df.columns if 'MAP' in col]  # Default to all systolic_bp columns
+                        options=[col for col in df.columns if 'MAP' in col],  # Only MAP columns
+                        default=[col for col in df.columns if 'MAP' in col],  # Default to all MAP columns
+                        key='map_columns_median'  # Unique key for this multiselect
                     )
 
                     # Filter the DataFrame based on selected columns
@@ -205,19 +238,18 @@ if login():
                     # Plotly Bar Chart
                     fig = px.bar(
                         df_melted,
-                        x='Time',  # The X-axis will show the selected systolic_bp columns
+                        x='Time',  # The X-axis will show the selected MAP columns
                         y='Mean Arterial Pressure',
                         color='group',  # Color by 'group' (sex + diet)
                         barmode='group',  # Group the bars for comparison
                         labels={'group': 'Group (Sex - Diet)', 'Mean Arterial Pressure': 'Mean Arterial Pressure \n (mmHg)'},
-                        title=f'{statistic} of {variable.title()} by Group and Week'
+                        title=f'{statistic} of {variable.title()} by Group and Week', width=width, height=height
                     )
 
                     # Display the plot
                     st.plotly_chart(fig)
                     
                 elif variable == 'Systolic Blood Pressure':
-
                     df = pd.read_csv('sbp_df_median.csv')
                     
                     # Create a new column that combines 'sex' and 'diet' for the X-axis
@@ -227,7 +259,8 @@ if login():
                     selected_columns = st.multiselect(
                         'Select columns to plot:', 
                         options=[col for col in df.columns if 'systolic_bp' in col],  # Only systolic_bp columns
-                        default=[col for col in df.columns if 'systolic_bp' in col]  # Default to all systolic_bp columns
+                        default=[col for col in df.columns if 'systolic_bp' in col],  # Default to all systolic_bp columns
+                        key='sbp_columns_median'  # Unique key for this multiselect
                     )
 
                     # Filter the DataFrame based on selected columns
@@ -247,24 +280,24 @@ if login():
                         color='group',  # Color by 'group' (sex + diet)
                         barmode='group',  # Group the bars for comparison
                         labels={'group': 'Group (Sex - Diet)', 'Systolic Blood Pressure': 'Systolic Blood Pressure \n (mmHg)'},
-                        title=f'{statistic} of {variable.title()} by Group and Week'
+                        title=f'{statistic} of {variable.title()} by Group and Week', width=width, height=height
                     )
 
                     # Display the plot
                     st.plotly_chart(fig)
 
-                else: #variable == 'Weight':
-                
+                else:  # variable == 'Weight'
                     df = pd.read_csv('weights_df_median.csv')
                     
                     # Create a new column that combines 'sex' and 'diet' for the X-axis
                     df['group'] = df['sex'] + ' ' + df['diet']
 
-                    # Let users select columns to plot (systolic_bp columns)
+                    # Let users select columns to plot (weight columns)
                     selected_columns = st.multiselect(
                         'Select columns to plot:', 
-                        options=[col for col in df.columns if 'weight' in col],  # Only systolic_bp columns
-                        default=[col for col in df.columns if 'weight' in col]  # Default to all systolic_bp columns
+                        options=[col for col in df.columns if 'weight' in col],  # Only weight columns
+                        default=[col for col in df.columns if 'weight' in col],  # Default to all weight columns
+                        key='weight_columns_median'  # Unique key for this multiselect
                     )
 
                     # Filter the DataFrame based on selected columns
@@ -279,17 +312,17 @@ if login():
                     # Plotly Bar Chart
                     fig = px.bar(
                         df_melted,
-                        x='Time',  # The X-axis will show the selected systolic_bp columns
+                        x='Time',  # The X-axis will show the selected weight columns
                         y='Weight',
                         color='group',  # Color by 'group' (sex + diet)
                         barmode='group',  # Group the bars for comparison
                         labels={'group': 'Group (Sex - Diet)', 'Weight': 'Weight (g)'},
-                        title=f'{statistic} of {variable.title()} by Group and Week'
+                        title=f'{statistic} of {variable.title()} by Group and Week', width=width, height=height
                     )
 
                     # Display the plot
                     st.plotly_chart(fig)
-                # Add the code for your second figure here
+                    # Add the code for your second figure here
             
     class ThirdFigurePage:
         def layout(self):
@@ -366,9 +399,9 @@ if login():
 
     pages = {
         "Home": HomePage,
-        "Cell Counts Figure": CellCountsPage,
-        "Second Figure": SecondFigurePage,
-        "Third Figure": ThirdFigurePage
+        "Dynamic Cell Counts by Group Figure": CellCountsPage,
+        "Dynamic Physiologic Parameters Figure": SecondFigurePage,
+        "Dynamic Gene by Cell Type Figure": ThirdFigurePage
     }
 
 
