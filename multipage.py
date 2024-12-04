@@ -578,6 +578,7 @@ if login():
                 with st.spinner("Loading gene data... Please wait."):
                     df = load_data()
                     df.set_index("Unnamed: 0", inplace=True)
+                    st.write("Loading complete!")
          
                 
                 train_model_question = st.checkbox(
