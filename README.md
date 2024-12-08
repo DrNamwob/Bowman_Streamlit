@@ -1,5 +1,19 @@
 
-This Streamlit application visualizes single cell RNA sequencing data from the perivascular adipose tissue of male and female rats that were fed either a control or high-fat diet for 8 or 24 weeks. Rats fed a high-fat diet for 24 weeks develop hypertension. Included in these visualizations are weight and blood pressure measurements, cell count data, and descriptive statistics for every gene in various cell types grouped by the treatment group these samples were from.
+This Streamlit application visualizes single cell RNA sequencing (scRNAseq) data from the perivascular adipose tissue (PVAT) of male and female rats that were fed either a control or high-fat diet for 8 or 24 weeks. Rats fed a high-fat diet for 24 weeks develop hypertension. Included in these visualizations are weight and blood pressure measurements, cell count data, and descriptive statistics for every gene in various cell types grouped by the treatment group these samples were from.
+
+## The long-term goal for this project is to use the gene expression data from this dataset to predict the pulse wave velocity of these animals.
+
+
+### Pulse wave velocity is an indicator of compliance, or stiffness, of the vasculature. Higher pulse wave velocities indicates stiffer, lower compliance, vessels. Reductions in compliance often precede hypertension (high blood pressure) and is a direct risk factor for stroke.
+- The pulse wave velocity of rats on the high-fat diet markedly increase after about 8 weeks on diet. 
+- Understanding which genes (features) have high weights in these predictive models could indicate specific biological pathways that are important in this process. 
+
+## Objectives for this application:
+
+1. Help users explore the complicated scRNAseq data from the PVAT from rats fed either a high-fat diet or "control" diet. This includes not only the gene expression data from various cell types, but also the animal-level physiological parameters. These include blood pressure, weight, and pulse wave velocity.
+2. Develop an intuition for how different machine learning models perform on predicting pulse wave velocity from the gene expression data of individual cells. 
+ 
+
 
 The scRNAseq data was processed in the following manner:
 
