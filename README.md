@@ -4,7 +4,8 @@ This Streamlit application visualizes single cell RNA sequencing (scRNAseq) data
 ## The long-term goal for this project is to use the gene expression data from this dataset to predict the pulse wave velocity of these animals.
 
 
-### Pulse wave velocity is an indicator of compliance, or stiffness, of the vasculature. Higher pulse wave velocities indicates stiffer, lower compliance, vessels. Reductions in compliance often precede hypertension (high blood pressure) and is a direct risk factor for stroke.
+### Pulse wave velocity is an indicator of compliance, or stiffness, of the vasculature. Higher pulse wave velocities indicates stiffer, lower compliance, vessels. Reduced compliance often precedes hypertension (high blood pressure) and is a risk factor for stroke.
+
 - The pulse wave velocity of rats on the high-fat diet markedly increase after about 8 weeks on diet. 
 - Understanding which genes (features) have high weights in these predictive models could indicate specific biological pathways that are important in this process. 
 
